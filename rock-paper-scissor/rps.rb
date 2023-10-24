@@ -27,7 +27,7 @@ when "paper"
 when "scissor"
     get_player_choice = 3
 else
-    puts "error, that is not an option, exiting"
+    puts "error, that is not an option"
     exit
 end
 
