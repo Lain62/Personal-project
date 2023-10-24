@@ -2,6 +2,10 @@
 # paper = 2
 # scissors = 3
 
+play = 1
+
+while play == 1 do
+
 get_computer_choice = rand(1..3)
 get_player_choice = 0
 
@@ -61,5 +65,8 @@ when 2
     puts "It's a lost!"
 end
 
-puts "Hope you have fun"
+puts "try again? 1.yes 2.no (put the number)"
+play = gets.chomp.to_i
    
+
+end
