@@ -7,17 +7,17 @@ play = 1
 while play == 1 do
 
 get_computer_choice = rand(1..3)
-get_player_choice = 0
+
 
 computer_selection ||= ""
-player_selection ||= ""
+
 
 condition = 0 # draw
 
 puts "select: rock, paper, scissor"
 player_selection = gets.chomp.downcase
 
-puts "Youve selected #{player_selection}!"
+puts "You've selected #{player_selection}!"
 
 case player_selection
 when "rock"
@@ -38,6 +38,8 @@ when 2
     computer_selection = "paper"
 when 3
     computer_selection = "scissors"
+else
+	puts "ERROR"
 end
 
 if get_computer_choice == 1 && get_player_choice == 2
@@ -63,6 +65,8 @@ when 1
     puts "It's a Win!"
 when 2
     puts "It's a lost!"
+else
+	puts "ERROR"
 end
 
 puts "try again? 1.yes 2.no (put the number)"
