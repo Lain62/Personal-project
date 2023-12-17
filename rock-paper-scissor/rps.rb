@@ -111,12 +111,14 @@ class RPS
         end
     end
 
-    def start
+    def start_game
         puts "Computer : how many rounds shall we play?"
         @game_rounds = gets.chomp.to_i
-        if @game_rounds < 0
+        if @game_rounds > 0
             puts "Computer : Great! let's begin."
             play_game
+        else
+            puts "Well alright then if you wanna be like that"
         end
         endgame
     end
@@ -127,16 +129,19 @@ class RPS
         play_again = gets.chomp.to_s.downcase
         case play_again
         when "yes"
-            start
+            reset_game
+            start_game
         else
-            break
         end
-        break
+    end
+
+    def play
+        puts "Computer : Let's play a game of rock paper scissors shall we :3"
+        start_game
     end
 
 end
 
 game = RPS.new
 
-
-
+game.play
