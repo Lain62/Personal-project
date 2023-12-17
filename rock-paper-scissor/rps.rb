@@ -77,6 +77,16 @@ class RPS
         end
     end
 
+    def reset_selections
+        @player[:selection] = ''
+        @computer[:selection] = ''
+    end
+
+    def reset_scores
+        @player[:score] = 0
+        @computer[:score] = 0
+    end
+
     def playround
         get_player_input
         get_computer_input
