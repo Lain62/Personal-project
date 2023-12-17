@@ -39,26 +39,26 @@ class RPS
         else
             puts "Computer selection generation error"
         end
-        puts @computer[:selection]
+        puts "The computer choose #{@computer[:selection]}"
     end
 
     def calculate_score
-        if @player[:selection] = 'rock' && @computer[:selection] = 'paper'
+        if @player[:selection] == 'rock' && @computer[:selection] == 'paper'
             puts 'you lost this one.'
             @computer[:score] += 1
-        elsif @player[:selection] = 'rock' && @computer[:selection] = 'scissors'
+        elsif @player[:selection] == 'rock' && @computer[:selection] == 'scissors'
             puts 'you won this one.'
             @player[:score] += 1
-        elsif @player[:selection] = 'paper' && @computer[:selection] = 'scissors'
+        elsif @player[:selection] == 'paper' && @computer[:selection] == 'scissors'
             puts 'you lost this one.'
             @computer[:score] += 1
-        elsif @player[:selection] = 'paper' && @computer[:selection] = 'rock'
+        elsif @player[:selection] == 'paper' && @computer[:selection] == 'rock'
             puts 'you won this one.'
             @player[:score] += 1
-        elsif @player[:selection] = 'scissors' && @computer[:selection] = 'rock'
+        elsif @player[:selection] == 'scissors' && @computer[:selection] == 'rock'
             puts 'you lost this one.'
             @computer[:score] += 1
-        elsif @player[:selection] = 'scissors' && @computer[:selection] = 'paper'
+        elsif @player[:selection] == 'scissors' && @computer[:selection] == 'paper'
             puts 'you won this one.'
             @player[:score] += 1
         else
@@ -104,8 +104,9 @@ class RPS
         while @current_rounds < @game_rounds
             play_round
             @current_rounds += 1
+            reset_selections
         end
-        if @current_rounds = @game_rounds
+        if @current_rounds == @game_rounds
             puts "Computer : Thats the game! let's see how well you hold up"
             final_standings
         end
@@ -132,6 +133,7 @@ class RPS
             reset_game
             start_game
         else
+            puts "See ya then"
         end
     end
 
