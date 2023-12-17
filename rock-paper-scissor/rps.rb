@@ -8,7 +8,8 @@ class RPS
           selection: '',
           score: 0
         }
-        @game_rounds ||= 0
+        @game_rounds = 0
+        @current_rounds = 0
         @game = :play
     end
 
@@ -87,13 +88,40 @@ class RPS
         @computer[:score] = 0
     end
 
-    def playround
+    def play_round
         get_player_input
         get_computer_input
         calculate_score
     end
 
+    def reset_game
+        reset_scores
+        reset_selections
+        @current_rounds = 0
+    end
 
+    def play_game
+        reset_game
+        while @current_rounds < @game_rounds
+            play_round
+            @current_rounds += 1
+        end
+        if @current_rounds = @game_rounds
+            puts "Computer : Thats the game! let's see how well you hold up"
+            final_standings
+
+        end
+    end
+
+    def start
+        puts "Computer : Let's play a game of rock paper scissors shall we :3"
+        puts "Computer : how many rounds shall we play?"
+        @game_rounds = gets.chomp.to_i
+        if @game_rounds < 0
+            puts "Computer : Great! let's begin."
+            play_game
+        end
+    end
 
 end
 
