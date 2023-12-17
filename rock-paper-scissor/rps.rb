@@ -77,6 +77,14 @@ class RPS
         end
     end
 
+    def playround
+        get_player_input
+        get_computer_input
+        calculate_score
+    end
+
+
+
 end
 
 game = RPS.new
