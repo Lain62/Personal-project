@@ -10,7 +10,6 @@ class RPS
         }
         @game_rounds = 0
         @current_rounds = 0
-        @game = :play
     end
 
     def get_player_input
@@ -109,18 +108,30 @@ class RPS
         if @current_rounds = @game_rounds
             puts "Computer : Thats the game! let's see how well you hold up"
             final_standings
-
         end
     end
 
     def start
-        puts "Computer : Let's play a game of rock paper scissors shall we :3"
         puts "Computer : how many rounds shall we play?"
         @game_rounds = gets.chomp.to_i
         if @game_rounds < 0
             puts "Computer : Great! let's begin."
             play_game
         end
+        endgame
+    end
+
+    def endgame
+        puts "Computer : should we play again?"
+        puts "Yes or No"
+        play_again = gets.chomp.to_s.downcase
+        case play_again
+        when "yes"
+            start
+        else
+            break
+        end
+        break
     end
 
 end
