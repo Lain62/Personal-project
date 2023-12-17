@@ -42,7 +42,7 @@ class RPS
         puts @computer[:selection]
     end
 
-    def calculate_battle
+    def calculate_score
         if @player[:selection] = 'rock' && @computer[:selection] = 'paper'
             puts 'you lost this one.'
             @computer[:score] += 1
@@ -62,9 +62,19 @@ class RPS
             puts 'you won this one.'
             @player[:score] += 1
         else
-            puts "No one wins."
+            puts "No one wins this time."
         end
         puts "The score is Player : #{@player[:score]} / #{@computer[:score]} : Computer"
+    end
+
+    def final_standings
+        if @player[:score] > @computer[:score]
+            puts "You have won the game!"
+        elsif @player[:score] < @computer[:score]
+            puts "You have lost the game!"
+        else
+            puts "Nobody wins, it's a draw."
+        end
     end
 
 end
