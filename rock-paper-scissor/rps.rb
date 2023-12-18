@@ -143,7 +143,8 @@ class RPS
 
     def start_game
         # checks how many rounds to play
-        puts "Computer : how many rounds shall we play?"
+        puts "#{@opponent_name}#{@opponent_say["rounds prompt"]}"
+        puts @system_say["rounds choose"]
         @game_rounds = gets.chomp.to_i
         if @game_rounds > 0
             puts "#{@opponent_name}#{@opponent_say["match start success"]}"

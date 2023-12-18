@@ -19,5 +19,29 @@
 
     "play again prompt": "Should we play again?",
     "goodbye": "See ya then."
-  }
+  },
+
+  "Template": {
+
+  "name" : "",
+
+  "introduction" : "",
+  "rounds prompt": "",
+
+  "match start success": "",
+  "match start fail": "",
+
+  "player choose" : "",
+  "computer choice": "",
+
+  "rounds reached": "",
+
+  "match win": "",
+  "match lost": "",
+  "match draw": "",
+
+  "play again prompt": "",
+  "goodbye": ""
+}
+
 }

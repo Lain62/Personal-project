@@ -19,5 +19,27 @@
     "play again prompt" : "Play again?: Yes or No.",
 
     "AI computer error": "Computer selection generation error."
+  },
+
+  "Template": {
+    "rounds choose" : "",
+
+    "player choose prompt": "",
+    "selection error": "",
+    "selection success": "",
+
+    "round result": "",
+
+    "round win": "",
+    "round lost": "",
+    "round draw": "",
+
+    "game win": "",
+    "game lost": "",
+    "game draw": "",
+
+    "play again prompt" : "",
+
+    "AI computer error": ""
   }
 }
