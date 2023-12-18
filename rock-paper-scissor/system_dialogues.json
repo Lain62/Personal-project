@@ -1,6 +1,5 @@
 {
-  "English": {
-  "player_input1": "Choose a fighter:",
-  "player_input2": "Rock, Paper, Scissors."
+  "English-default": {
+  "player_choose": "Rock, Paper or Scissors."
   }
 }

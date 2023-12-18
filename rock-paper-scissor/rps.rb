@@ -2,7 +2,12 @@ require 'json'
 
 class RPS
     def initialize
-        directory = File.expand_path(File.dirname(__FILE__))
+        # Customization settings
+        @current_system_language = 'English-default'
+        @current_opponent = 'Computer-default'
+
+
+        # Initizialazation of variables to keep track
         @player = {
           selection: '',
           score: 0
@@ -13,14 +18,27 @@ class RPS
         }
         @game_rounds = 0
         @current_rounds = 0
+
+
+
+        # JSON intergration
+        directory = File.expand_path(File.dirname(__FILE__))
         system_dialogues = File.read("#{directory}/system_dialogues.json")
         @system_dialogue = JSON.parse(system_dialogues)
-        @current_system_language = 'English'
+
+        opponent_dialogues = File.read("#{directory}/opponent_dialogues.json")
+        @opponent_dialogue = JSON.parse(opponent_dialogues)
+
+        @opponent_say = @opponent_dialogue["#{@current_opponent}"]
+        @system_say = @system_dialogue["#{ @current_system_language }"]
+
     end
 
+
     def get_player_input
-        puts @system_dialogue[@current_system_language]['player_input1']
-        puts @system_dialogue[@current_system_language]['player_input2']
+        # prompts the player of what they will be choosing
+        puts @system_say['player_choose']
+        puts @opponent_say['name'] + @opponent_say ["player_choose"]
         @player[:selection] = gets.chomp.to_s.downcase
         case @player[:selection]
         when 'rock', 'paper', 'scissors'
@@ -32,6 +50,7 @@ class RPS
     end
 
     def get_computer_input
+        # RPS AI created with random number generation
         input = rand(1..3)
         case input
         when 1
@@ -43,10 +62,11 @@ class RPS
         else
             puts "Computer selection generation error"
         end
-        puts "The computer choose #{@computer[:selection]}"
+        puts "Computer: I'll choose #{@computer[:selection]}!"
     end
 
     def calculate_score
+        # Calculate the selection for the computer and player to see who wins
         if @player[:selection] == 'rock' && @computer[:selection] == 'paper'
             puts 'you lost this one.'
             @computer[:score] += 1
@@ -72,6 +92,7 @@ class RPS
     end
 
     def final_standings
+        # Checks the overall score of the match to see who won
         if @player[:score] > @computer[:score]
             puts "You have won the game!"
         elsif @player[:score] < @computer[:score]
@@ -92,6 +113,7 @@ class RPS
     end
 
     def play_round
+        # Plays a single round of rock paper scissors
         get_player_input
         get_computer_input
         calculate_score
@@ -104,6 +126,7 @@ class RPS
     end
 
     def play_game
+        # Where a match starts after introductory
         reset_game
         while @current_rounds < @game_rounds
             play_round
@@ -117,6 +140,7 @@ class RPS
     end
 
     def start_game
+        # checks how many rounds to play
         puts "Computer : how many rounds shall we play?"
         @game_rounds = gets.chomp.to_i
         if @game_rounds > 0
@@ -129,6 +153,7 @@ class RPS
     end
 
     def endgame
+        # Prompt at the end of a match
         puts "Computer : should we play again?"
         puts "Yes or No"
         play_again = gets.chomp.to_s.downcase
@@ -142,6 +167,7 @@ class RPS
     end
 
     def play
+        # Where the game starts
         puts "Computer : Let's play a game of rock paper scissors shall we :3"
         start_game
     end
