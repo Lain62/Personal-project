@@ -1,6 +1,23 @@
 {
   "Computer-default": {
     "name" : "Computer",
-    "player_choose" : "Choose your fighter!"
+
+    "introduction" : "Let's play a game of rock paper scissors shall we :3",
+    "rounds prompt": "How many rounds shall we play?",
+
+    "match start success": "Great! let's begin.",
+    "match start fail": "Well alright then if you wanna be like that",
+
+    "player choose" : "Choose your fighter!",
+    "computer choice": "I choose this!: ",
+
+    "rounds reached": "That is the game! let's see how well you hold up.",
+
+    "match win": "My code is perfect.",
+    "match lost": "There seems to still be bugs in this code.",
+    "match draw": "Seems like your abilities are matched with my code",
+
+    "play again prompt": "Should we play again?",
+    "goodbye": "See ya then."
   }
 }

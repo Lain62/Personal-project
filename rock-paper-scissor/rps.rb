@@ -30,21 +30,20 @@ class RPS
         @opponent_dialogue = JSON.parse(opponent_dialogues)
 
         @opponent_say = @opponent_dialogue["#{@current_opponent}"]
+        @opponent_name = "#{ @opponent_dialogue["#{@current_opponent}"]["name"] } : "
         @system_say = @system_dialogue["#{ @current_system_language }"]
-
     end
-
 
     def get_player_input
         # prompts the player of what they will be choosing
-        puts @system_say['player_choose']
-        puts @opponent_say['name'] + @opponent_say ["player_choose"]
+        puts "#{@opponent_name}#{@opponent_say["player choose"]}"
+        puts @system_say['player choose prompt']
         @player[:selection] = gets.chomp.to_s.downcase
         case @player[:selection]
         when 'rock', 'paper', 'scissors'
-            puts "You choose #{@player[:selection]}!"
+            puts @system_say['selection success'] + "#{@player[:selection]}!"
         else
-            puts 'Selection invalid, please try again.'
+            puts @system_say["selection error"]
             get_player_input
         end
     end
@@ -60,45 +59,48 @@ class RPS
         when 3
             @computer[:selection] = 'scissors'
         else
-            puts "Computer selection generation error"
+            puts @system_say['AI_computer_error']
         end
-        puts "Computer: I'll choose #{@computer[:selection]}!"
+        puts "#{@opponent_name}#{@opponent_say["computer choice"]}#{@computer[:selection]}"
     end
 
     def calculate_score
         # Calculate the selection for the computer and player to see who wins
         if @player[:selection] == 'rock' && @computer[:selection] == 'paper'
-            puts 'you lost this one.'
+            puts @system_say['round lost']
             @computer[:score] += 1
         elsif @player[:selection] == 'rock' && @computer[:selection] == 'scissors'
-            puts 'you won this one.'
+            puts @system_say['round win']
             @player[:score] += 1
         elsif @player[:selection] == 'paper' && @computer[:selection] == 'scissors'
-            puts 'you lost this one.'
+            puts @system_say['round lost']
             @computer[:score] += 1
         elsif @player[:selection] == 'paper' && @computer[:selection] == 'rock'
-            puts 'you won this one.'
+            puts @system_say['round win']
             @player[:score] += 1
         elsif @player[:selection] == 'scissors' && @computer[:selection] == 'rock'
-            puts 'you lost this one.'
+            puts @system_say['round lost']
             @computer[:score] += 1
         elsif @player[:selection] == 'scissors' && @computer[:selection] == 'paper'
-            puts 'you won this one.'
+            puts @system_say['round win']
             @player[:score] += 1
         else
-            puts "No one wins this time."
+            puts @system_say['round draw']
         end
-        puts "The score is Player : #{@player[:score]} / #{@computer[:score]} : Computer"
+        puts @system_say["round result"] + "#{@player[:score]} / #{@computer[:score]}"
     end
 
     def final_standings
         # Checks the overall score of the match to see who won
         if @player[:score] > @computer[:score]
-            puts "You have won the game!"
+            puts @system_say["game win"]
+            puts "#{@opponent_name}#{@opponent_say["match lost"]}"
         elsif @player[:score] < @computer[:score]
-            puts "You have lost the game!"
+            puts @system_say["game lost"]
+            puts "#{@opponent_name}#{@opponent_say["match win"]}"
         else
-            puts "Nobody wins, it's a draw."
+            puts @system_say["game draw"]
+            puts "#{@opponent_name}#{@opponent_say["match draw"]}"
         end
     end
 
@@ -134,7 +136,7 @@ class RPS
             reset_selections
         end
         if @current_rounds == @game_rounds
-            puts "Computer : That is the game! let's see how well you hold up"
+            puts "#{@opponent_name}#{@opponent_say["rounds reached"]}"
             final_standings
         end
     end
@@ -144,31 +146,31 @@ class RPS
         puts "Computer : how many rounds shall we play?"
         @game_rounds = gets.chomp.to_i
         if @game_rounds > 0
-            puts "Computer : Great! let's begin."
+            puts "#{@opponent_name}#{@opponent_say["match start success"]}"
             play_game
         else
-            puts "Well alright then if you wanna be like that"
+            puts "#{@opponent_name}#{@opponent_say["match start fail"]}"
         end
         endgame
     end
 
     def endgame
         # Prompt at the end of a match
-        puts "Computer : should we play again?"
-        puts "Yes or No"
+        puts "#{@opponent_name}#{@opponent_say["play again prompt"]}"
+        puts @system_say["play again prompt"]
         play_again = gets.chomp.to_s.downcase
         case play_again
         when "yes"
             reset_game
             start_game
         else
-            puts "See ya then"
+            puts "#{@opponent_name}#{@opponent_say["goodbye"]}"
         end
     end
 
     def play
         # Where the game starts
-        puts "Computer : Let's play a game of rock paper scissors shall we :3"
+        puts "#{@opponent_name}#{@opponent_say["introduction"]}"
         start_game
     end
 

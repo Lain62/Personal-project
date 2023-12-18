@@ -1,5 +1,23 @@
 {
   "English-default": {
-  "player_choose": "Rock, Paper or Scissors."
+    "rounds choose" : "Please input how many rounds to play: ",
+
+    "player choose prompt": "Please choose: Rock, Paper or Scissors.",
+    "selection error": "Selection invalid, please try again.",
+    "selection success": "You choose: ",
+
+    "round result": "The score is: ",
+
+    "round win": "You won this round.",
+    "round lost": "You lost this round.",
+    "round draw": "It's a draw this round.",
+
+    "game win": "You have won the game! ",
+    "game lost": "You have lost the game!",
+    "game draw": "Nobody wins, it's a draw!",
+
+    "play again prompt" : "Play again?: Yes or No.",
+
+    "AI computer error": "Computer selection generation error."
   }
 }
