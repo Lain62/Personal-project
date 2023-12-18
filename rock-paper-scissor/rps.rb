@@ -1,5 +1,8 @@
+require 'json'
+
 class RPS
     def initialize
+        directory = File.expand_path(File.dirname(__FILE__))
         @player = {
           selection: '',
           score: 0
@@ -10,21 +13,21 @@ class RPS
         }
         @game_rounds = 0
         @current_rounds = 0
+        system_dialogues = File.read("#{directory}/system_dialogues.json")
+        @system_dialogue = JSON.parse(system_dialogues)
     end
 
     def get_player_input
-        puts "Choose a fighter:"
-        puts "Rock, Paper, Scissors."
+        puts @system_dialogue['player_input1']
+        puts @system_dialogue['player_input2']
         @player[:selection] = gets.chomp.to_s.downcase
         case @player[:selection]
-        when 'rock'
-        when 'paper'
-        when 'scissors'
+        when 'rock', 'paper', 'scissors'
+            puts "You choose #{@player[:selection]}!"
         else
             puts 'Selection invalid, please try again.'
             get_player_input
         end
-        puts "You choose #{@player[:selection]}!"
     end
 
     def get_computer_input
