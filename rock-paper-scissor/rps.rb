@@ -107,7 +107,7 @@ class RPS
             reset_selections
         end
         if @current_rounds == @game_rounds
-            puts "Computer : Thats the game! let's see how well you hold up"
+            puts "Computer : That is the game! let's see how well you hold up"
             final_standings
         end
     end
@@ -143,7 +143,5 @@ class RPS
     end
 
 end
-
 game = RPS.new
-
 game.play
