@@ -15,11 +15,12 @@ class RPS
         @current_rounds = 0
         system_dialogues = File.read("#{directory}/system_dialogues.json")
         @system_dialogue = JSON.parse(system_dialogues)
+        @current_system_language = 'English'
     end
 
     def get_player_input
-        puts @system_dialogue['player_input1']
-        puts @system_dialogue['player_input2']
+        puts @system_dialogue[@current_system_language]['player_input1']
+        puts @system_dialogue[@current_system_language]['player_input2']
         @player[:selection] = gets.chomp.to_s.downcase
         case @player[:selection]
         when 'rock', 'paper', 'scissors'
